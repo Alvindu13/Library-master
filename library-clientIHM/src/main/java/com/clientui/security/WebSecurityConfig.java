@@ -1,4 +1,4 @@
-package com.clientui.config;
+package com.clientui.security;
 
 import com.clientui.beans.UserBean;
 import com.clientui.web.proxies.MicroserviceConsumerProxy;
@@ -21,36 +21,38 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableOAuth2Sso
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /*@Autowired
-    PasswordEncoder passwordEncoder;
-
-    @Autowired
-    MicroserviceConsumerProxy microserviceConsumerProxy;
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        for (UserBean user: microserviceConsumerProxy.findAllUsers()) {
-            auth.inMemoryAuthentication()
-                    .passwordEncoder(passwordEncoder)
-                    .withUser(user.getUsername()).password(passwordEncoder.encode(user.getPassword())).roles("USER");
-        }
-
-    }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }*/
+    public UserDetailsService userDetailsService() {
+        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+        manager.createUser(User.withDefaultPasswordEncoder().username("Jeremie").password("user").roles("USER").build());
+        return manager;
+    }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        http
-                .csrf().disable()
-                .authorizeRequests().antMatchers("/login").permitAll()
-                .anyRequest().authenticated();
-
+        http.authorizeRequests().antMatchers("/login").permitAll();
+        http.authorizeRequests().anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .and()
+                .logout().permitAll();
     }
+
+
+      /*@Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+
+        auth.inMemoryAuthentication().withUser(User.withDefaultPasswordEncoder().username("user").password("user").roles("USER").build());
+        /*for (UserBean user: microserviceConsumerProxy.findAllUsers()) {
+            auth.inMemoryAuthentication()
+                    .passwordEncoder(passwordEncoder)
+                    .withUser(user.getEmail()).password(passwordEncoder.encode(user.getPassword())).roles("USER");
+        }
+
+    }*/
 
     /*@Override
     protected void configure(HttpSecurity http) throws Exception {

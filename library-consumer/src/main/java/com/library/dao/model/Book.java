@@ -1,5 +1,6 @@
 package com.library.dao.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name="books")
 public class Book {
 
     @Id
@@ -28,6 +30,7 @@ public class Book {
     @Column(columnDefinition = "boolean default true")
     private Boolean available;
 
+    @JsonIgnore
     @ManyToOne
     private User borrower;
 

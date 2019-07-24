@@ -11,12 +11,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
 <div class="container">
     <h1>Liste des livres disponibles</h1>
-    Logged user: <span sec:authentication="name">Test</span>
+
+    <div class="container unauthenticated">
+        With Facebook: <a href="/login">click here</a>
+    </div>
+    test <td th:text="${username}"></td>
+</div>
 
 
 
@@ -39,6 +45,13 @@
                 <td th:text="${book.price}"></td>
                 <td th:text="${book.genre}"></td>
                 <td th:text="${book.quantity}"></td>
+            </tr>
+
+
+            <tr th:each="user, rowStat: ${user}"
+                th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.password}"></td>
             </tr>
             </tbody>
         </table>

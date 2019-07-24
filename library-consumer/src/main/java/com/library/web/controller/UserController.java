@@ -49,9 +49,8 @@ public class UserController {
 
         return repository.findById(id)
                 .map(x -> {
-                    x.setUsername(newUser.getUsername());
                     x.setPassword(newUser.getPassword());
-                    x.setMail(newUser.getMail());
+                    x.setEmail(newUser.getEmail());
                     return repository.save(x);
                 })
                 .orElseGet(() -> {
@@ -63,8 +62,10 @@ public class UserController {
 
     // Find
     @GetMapping("/users/{username}")
-    User findByName(@PathVariable String username) {
-        return repository.findUserByUsername(username);
+    User findByName(@PathVariable String mail) {
+        return repository.findUserByEmail(mail);
+
+                //repository.findUserByUsername(username);
     }
 
 

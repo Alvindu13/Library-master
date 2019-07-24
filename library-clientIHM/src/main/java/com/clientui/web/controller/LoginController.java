@@ -35,17 +35,17 @@ public class LoginController {
     @PostMapping("/register")
     public String registerUser( @ModelAttribute("userBean") UserBean userBean) {
 
-        userBean.setId(5L);
+        /*userBean.setId(5L);
         userBean.setActive(1);
         userBean.setPermissions("USER");
-        userBean.setRoles("USER");
+        userBean.setRoles("USER");*/
         mConsumerProxy.newUser(userBean);
         return "/about";
     }
 
 
 
-    @GetMapping("/login")
+    /*@GetMapping("/login")
     public String login(Model model) {
         model.addAttribute("users", mConsumerProxy.findAllUsers());
         return "/login";
@@ -53,11 +53,9 @@ public class LoginController {
 
     @PostMapping("/login")
     public String postLogin(@ModelAttribute("userBean") UserBean userBean) {
-
         System.out.println("test");
-
         return "/login";
-    }
+    }*/
 
 
 

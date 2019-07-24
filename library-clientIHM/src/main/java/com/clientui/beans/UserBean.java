@@ -24,48 +24,8 @@ import java.util.stream.Collectors;
 public class UserBean {
 
 
-    private Long id;
-
-    private String mail;
-
+    private Integer id;
+    private String email;
     private String password;
-    private String username;
-
-    private int active;
-
-    private String roles;
-
-    private String permissions;
-
-
-    //test
-
-    private boolean accountNonExpired;
-    private boolean accountNonLocked;
-    private boolean credentialsNonExpired;
-    private boolean enabled;
-
-
-
-    public UserBean() {
-        this.accountNonExpired = true;
-        this.accountNonLocked = true;
-        this.credentialsNonExpired = true;
-        this.enabled = true;
-        this.roles = "USER";
-    }
-
-
-    public UserBean(Long id, String mail, String password, String username, int active, String roles, String permissions) {
-        this.id = id;
-        this.mail = mail;
-        this.password = password;
-        this.username = username;
-        this.active = active;
-        this.roles = roles;
-        this.permissions = permissions;
-    }
-
-
-
+    private List<RoleBean> roles;
 }

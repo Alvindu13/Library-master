@@ -1,64 +1,80 @@
 package com.library.dao.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.library.dao.model.Role;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+/**
+ * @author Ramesh Fadatare
+ *
+ */
 @Entity
-@Table(name= "users")
-@Data
-@AllArgsConstructor
+@Table(name="users")
 public class User {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private String mail;
-
+    @Column(nullable = false, unique = true)
+    @Email(message = "{errors.invalid_email}")
+    private String email;
+    @Column(nullable = false)
+    @NotEmpty
+    @Size(min = 4)
     private String password;
 
-    @Column(nullable = false)
-    private String username;
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
+    private List<Role> roles;
 
-    private int active;
+    public Long getId() {
+        return id;
+    }
 
-    private String roles;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    private String permissions;
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public User(String username, String password, String roles, String permissions, String mail ) {
-        this.username = username;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
-        this.permissions = permissions;
-        this.mail = mail;
-        this.active = 1;
     }
-
-    protected User(){}
-
-    public List<String> getRoleList(){
-        if(this.roles.length() > 0){
-            return Arrays.asList(this.roles.split(","));
-        }
-        return new ArrayList<>();
-    }
-
-    public List<String> getPermissionList(){
-        if(this.permissions.length() > 0){
-            return Arrays.asList(this.permissions.split(","));
-        }
-        return new ArrayList<>();
-    }
-
 }

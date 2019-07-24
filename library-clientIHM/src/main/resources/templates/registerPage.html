@@ -25,11 +25,12 @@
 
 <form th:action="@{/register}" th:object="${userBean}" method="POST">
     <table>
+
         <tr>
-            <td>User Name</td>
-            <td><input type="text" th:field="*{username}" /></td>
+            <td>Email</td>
+            <td><input type="text" th:field="*{email}" /></td>
             <td>
-                <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">..</span>
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">..</span>
             </td>
         </tr>
         <tr>
@@ -37,13 +38,6 @@
             <td><input type="password" th:field="*{password}" /> </td>
             <td>
                 <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">..</span>
-            </td>
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td><input type="text" th:field="*{mail}" /> </td>
-            <td>
-                <span th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">..</span>
             </td>
         </tr>
 
