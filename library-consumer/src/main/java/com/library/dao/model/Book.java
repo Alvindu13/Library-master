@@ -17,7 +17,7 @@ public class Book {
     private Long id;
     private String name;
     private String author;
-    private BigDecimal price;
+    private Double price;
 
     //Genre du livre
     private String genre;
@@ -31,7 +31,15 @@ public class Book {
     @ManyToOne
     private User borrower;
 
-
+    public Book(String name, String author, Double price, String genre, Long quantity, Boolean available, User borrower) {
+        this.name = name;
+        this.author = author;
+        this.price = price;
+        this.genre = genre;
+        this.quantity = quantity;
+        this.available = available;
+        this.borrower = borrower;
+    }
 
     //ou boolean
     //private int borrowCount;

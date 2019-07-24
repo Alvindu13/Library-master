@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:utext="${title}"></title>
     <style>
         th, td {
             padding: 5px;
@@ -18,21 +17,19 @@
     </style>
 </head>
 <body>
-<!-- Include _menu.html -->
-<th:block th:include="/_menu"></th:block>
+<!-- Include _menu.html
+<th:block th:include="/_menu"></th:block>-->
 
 <h2>Register</h2>
 
-<div th:if="${errorMessage != null}"
-     th:utext="${errorMessage}" class="error">...</div>
 
-<form th:action="@{/register}" th:object="${appUserForm}" method="POST">
+<form th:action="@{/register}" th:object="${userBean}" method="POST">
     <table>
         <tr>
             <td>User Name</td>
-            <td><input type="text" th:field="*{userName}" /></td>
+            <td><input type="text" th:field="*{username}" /></td>
             <td>
-                <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">..</span>
+                <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">..</span>
             </td>
         </tr>
         <tr>
@@ -43,57 +40,13 @@
             </td>
         </tr>
         <tr>
-            <td>Confirm</td>
-            <td><input type="password" th:field="*{confirmPassword}" /> </td>
-            <td>
-                <span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">..</span>
-            </td>
-        </tr>
-        <tr>
             <td>Email</td>
-            <td><input type="text" th:field="*{email}" /> </td>
+            <td><input type="text" th:field="*{mail}" /> </td>
             <td>
-                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">..</span>
+                <span th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">..</span>
             </td>
         </tr>
-        <tr>
-            <td>First Name</td>
-            <td><input type="text" th:field="*{firstName}" /> </td>
-            <td>
-                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">..</span>
-            </td>
-        </tr>
-        <tr>
-            <td>Last Name</td>
-            <td><input type="text" th:field="*{lastName}" /> </td>
-            <td>
-                <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">..</span>
-            </td>
-        </tr>
-        <tr>
-            <td>Gender</td>
-            <td>
-                <select th:field="*{gender}">
-                    <option value=""> -- </option>
-                    <option value="M">Male</option>
-                    <option value="F">Female</option>
-                </select>
-            </td>
-            <td>
-                <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}">..</span>
-            </td>
-        </tr>
-        <tr>
-            <td>Country</td>
-            <td>
-                <select th:field="*{countryCode}">
-                    <option value=""> -- </option>
-                    <option th:each="country : ${countries}"
-                            th:value="${country.countryCode}"
-                            th:utext="${country.countryName}"/>
-                </select>
-            <td><span th:if="${#fields.hasErrors('countryCode')}" th:errors="*{countryCode}">..</span></td>
-        </tr>
+
         <tr>
             <td>&nbsp;</td>
             <td>

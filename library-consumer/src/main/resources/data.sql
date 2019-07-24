@@ -1,13 +1,10 @@
 
 
-
-
-
 --------------------------
 --USER--
 --------------------------
-INSERT INTO USERS (ID, FIRSTNAME, LASTNAME, MAIL) VALUES (1, 'Jonas', 'Brother', 'alcaraz.jeremie@hotmail.fr');
-INSERT INTO USERS (ID, FIRSTNAME, LASTNAME, MAIL) VALUES (2, 'Romain', 'Test', 'alf@gmail.com');
+INSERT INTO USERS (ID,  USERNAME, PASSWORD, ROLES, PERMISSIONS, MAIL, ACTIVE) VALUES (1, 'Alvindu13', '1234', 'USER', 'USER', 'alcaraz.jeremie@hotmail.fr', 1);
+INSERT INTO USERS (ID,  USERNAME, PASSWORD, ROLES, PERMISSIONS, MAIL, ACTIVE) VALUES (2, 'admin', 'admin123', 'ADMIN', 'ADMIN', 'jeremie.jeremie@hotmail.fr', 1);
 
 --------------------------
 --BOOK--

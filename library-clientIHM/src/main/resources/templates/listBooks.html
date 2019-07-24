@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <html lang="fr">
 <head>
     <title>Les livres</title>
@@ -14,6 +16,10 @@
 <body>
 <div class="container">
     <h1>Liste des livres disponibles</h1>
+    Logged user: <span sec:authentication="name">Test</span>
+
+
+
     <div class="row col-md-7 table-responsive">
         <table id="customerTable" class="table">
             <thead>

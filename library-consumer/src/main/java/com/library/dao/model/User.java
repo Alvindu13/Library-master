@@ -15,7 +15,6 @@ import java.util.List;
 @Entity
 @Table(name= "users")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class User {
 
@@ -32,45 +31,21 @@ public class User {
 
     private int active;
 
-    private String roles = "";
+    private String roles;
 
-    private String permissions = "";
+    private String permissions;
 
 
-    public User(String mail, String password, String username, int active, String roles, String permissions) {
-        this.mail = mail;
-        this.password = password;
+    public User(String username, String password, String roles, String permissions, String mail ) {
         this.username = username;
-        this.active = 1;
+        this.password = password;
         this.roles = roles;
         this.permissions = permissions;
+        this.mail = mail;
+        this.active = 1;
     }
 
     protected User(){}
-
-    public long getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public int getActive() {
-        return active;
-    }
-
-    public String getRoles() {
-        return roles;
-    }
-
-    public String getPermissions() {
-        return permissions;
-    }
 
     public List<String> getRoleList(){
         if(this.roles.length() > 0){
@@ -86,35 +61,4 @@ public class User {
         return new ArrayList<>();
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setActive(int active) {
-        this.active = active;
-    }
-
-    public void setRoles(String roles) {
-        this.roles = roles;
-    }
-
-    public void setPermissions(String permissions) {
-        this.permissions = permissions;
-    }
 }

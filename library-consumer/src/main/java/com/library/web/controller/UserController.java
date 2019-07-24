@@ -23,7 +23,7 @@ public class UserController {
 
     // Find
     @GetMapping("/users")
-    List<User> findAll() {
+    List<User> findAllUsers() {
         return repository.findAll();
     }
 
@@ -31,8 +31,8 @@ public class UserController {
     @PostMapping("/users")
     //return 201 instead of 200
     @ResponseStatus(HttpStatus.CREATED)
-    User newClient(@RequestBody User newClient) {
-        return repository.save(newClient);
+    User newUser(@RequestBody User newUser) {
+        return repository.save(newUser);
     }
 
 
@@ -45,19 +45,26 @@ public class UserController {
 
     // Save or update
     @PutMapping("/users/{id}")
-    User saveOrUpdate(@RequestBody User newClient, @PathVariable Long id) {
+    User saveOrUpdate(@RequestBody User newUser, @PathVariable Long id) {
 
         return repository.findById(id)
                 .map(x -> {
-                    x.setFirstName(newClient.getFirstName());
-                    x.setLastName(newClient.getLastName());
-                    x.setMail(newClient.getMail());
+                    x.setUsername(newUser.getUsername());
+                    x.setPassword(newUser.getPassword());
+                    x.setMail(newUser.getMail());
                     return repository.save(x);
                 })
                 .orElseGet(() -> {
-                    newClient.setId(id);
-                    return repository.save(newClient);
+                    newUser.setId(id);
+                    return repository.save(newUser);
                 });
+    }
+
+
+    // Find
+    @GetMapping("/users/{username}")
+    User findByName(@PathVariable String username) {
+        return repository.findUserByUsername(username);
     }
 
 

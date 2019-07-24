@@ -1,5 +1,7 @@
 package com.clientui.beans;
 
+import org.springframework.context.annotation.Bean;
+
 import java.math.BigDecimal;
 
 public class BookBean {
