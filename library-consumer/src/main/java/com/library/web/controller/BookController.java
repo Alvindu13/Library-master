@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -88,12 +89,20 @@ public class BookController {
 
     }
 
-    /*// update date only
-    @PatchMapping("/{id}")
-    Book patchBookDateBorrow(@RequestBody Map<String, String> update, @PathVariable Long id) {
-        return null;
-    }*/
+    // update dare only
+    @PatchMapping("/date/{id}")
+    Book bookReserve(@RequestBody Book newBook, @PathVariable Long id) {
+        return repository.findById(id)
+                .map(x -> {
+                    x.setBorrowDate(newBook.getBorrowDate());
+                    return repository.save(x);
+                })
+                .orElseGet(() -> {
+                    newBook.setId(id);
+                    return repository.save(newBook);
+                });
 
+    }
 
 
     @DeleteMapping("/{id}")
