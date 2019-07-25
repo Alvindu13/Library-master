@@ -12,6 +12,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.xml.crypto.Data;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -92,10 +94,13 @@ public class BookController {
     // update dare only
     @PatchMapping("/date/{id}")
     Book bookReserve(@RequestBody Book newBook, @PathVariable Long id) {
+
+        LocalDateTime currentTime = LocalDateTime.now();
+
         return repository.findById(id)
                 .map(x -> {
-                    x.setBorrowDate(newBook.getBorrowDate());
-                    x.setAvailable(newBook.getAvailable());
+                    x.setBorrowDate(currentTime);
+                    x.setAvailable(false);
                     return repository.save(x);
                 })
                 .orElseGet(() -> {

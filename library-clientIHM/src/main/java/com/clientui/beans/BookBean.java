@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -28,5 +29,5 @@ public class BookBean {
 
     private Boolean isProlongation;
 
-    private Date borrowDate;
+    private LocalDateTime borrowDate;
 }

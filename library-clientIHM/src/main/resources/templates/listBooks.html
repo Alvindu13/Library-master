@@ -48,7 +48,7 @@
             <td th:text="${book.quantity}"></td>
 
             <td>
-                <form class="login-form" th:action="@{/bookReserve}"   method='POST'>
+                <form class="login-form" th:action="@{/books/date(id=${book.id})}"  method='POST'>
                         <button th:if="${book.available eq true}" name = "submit" type="submit" class="btn btn-warning">RESERVER</button>
                         <button th:if="${book.available eq false}" type="button" class="btn btn-secondary btn-lg" disabled>INDISPONIBLE</button>
                 </form>

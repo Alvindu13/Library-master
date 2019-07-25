@@ -29,10 +29,16 @@ public interface MicroserviceConsumerProxy {
 
         // Find
         @GetMapping("/users/{id}")
-        UserBean findOne(@PathVariable Long id);
+        UserBean findOneUser(@PathVariable Long id);
 
 
         // Find
         @GetMapping("/users/{username}")
         UserBean findByName(@PathVariable String username);
+
+        @PatchMapping("books/date/{id}")
+        BookBean bookReserve(@RequestBody BookBean newBook, @PathVariable Long id);
+
+        @GetMapping("books/{id}")
+        BookBean findOneBook(@PathVariable Long id);
 }

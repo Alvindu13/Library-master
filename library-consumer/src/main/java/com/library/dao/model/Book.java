@@ -7,6 +7,7 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 import javax.validation.constraints.Null;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -35,9 +36,12 @@ public class Book {
     @Nullable
     private Boolean isProlongation;
 
-    @Nullable
+    /*@Nullable
     @Temporal(TemporalType.DATE)
-    private Date borrowDate;
+    private Date borrowDate;*/
+
+    @Nullable
+    private LocalDateTime borrowDate;
 
     @JsonIgnore
     @ManyToOne
