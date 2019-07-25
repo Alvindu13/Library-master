@@ -4,9 +4,9 @@ INSERT INTO roles (id, name) VALUES
 (3, 'ROLE_USER')
 ;
 
-INSERT INTO users (id, email, password, name) VALUES
-(1, 'admin@gmail.com', 'admin', 'Admin'),
-(3, 'user@gmail.com', 'user', 'User');
+INSERT INTO users (id, email, password) VALUES
+(1, 'admin@gmail.com', 'admin'),
+(3, 'user@gmail.com', 'user');
 
 
 insert into user_role(user_id, role_id) values
@@ -19,10 +19,9 @@ insert into user_role(user_id, role_id) values
 --------------------------
 --BOOK--
 --------------------------
-INSERT INTO BOOKS (ID , NAME ,AUTHOR,PRICE, GENRE, QUANTITY, BORROWER_ID ) VALUES (1, 'Babylon', 'Jérémie', 10, 'Policier', 8, 1);
-INSERT INTO BOOKS (ID , NAME ,AUTHOR ,PRICE, GENRE, QUANTITY, BORROWER_ID) VALUES (2, 'Bleu ciel', 'Eric', 14, 'Aventure', 2, 1);
-INSERT INTO BOOKS (ID , NAME ,AUTHOR ,PRICE, GENRE, QUANTITY, BORROWER_ID) VALUES (3, 'Momy', 'Rams', 19.99, 'Action', 1, 1);
-INSERT INTO BOOKS (ID , NAME ,AUTHOR ,PRICE, GENRE, QUANTITY, BORROWER_ID) VALUES (4, 'Titanic', 'Leonardo', 10, 'Drame', 3, 1);
-INSERT INTO BOOKS (ID , NAME ,AUTHOR ,PRICE, GENRE, QUANTITY, BORROWER_ID) VALUES (5, 'Sherlock', 'Eldison', 4, 'Policier', 7, 3);
-
+INSERT INTO BOOKS (ID , NAME, AVAILABLE, AUTHOR, PRICE, GENRE, QUANTITY, BORROWER_ID ) VALUES (1, 'Babylon', true, 'Jérémie', 10, 'Policier', 8, 1);
+INSERT INTO BOOKS (ID , NAME, AVAILABLE, AUTHOR ,PRICE, GENRE, QUANTITY, BORROWER_ID) VALUES (2, 'Bleu ciel', true, 'Eric', 14, 'Aventure', 2, 1);
+INSERT INTO BOOKS (ID , NAME, AVAILABLE, AUTHOR ,PRICE, GENRE, QUANTITY, BORROWER_ID) VALUES (3, 'Momy', false, 'Rams', 19.99, 'Action', 1, 1);
+INSERT INTO BOOKS (ID , NAME, AVAILABLE, AUTHOR ,PRICE, GENRE, QUANTITY, BORROWER_ID) VALUES (4, 'Titanic', true ,'Leonardo', 10, 'Drame', 3, 1);
+INSERT INTO BOOKS (ID , NAME, AVAILABLE, AUTHOR ,PRICE, GENRE, QUANTITY, BORROWER_ID) VALUES (5,  'Sherlock', false,'Eldison', 4, 'Policier', 7, 3);
 

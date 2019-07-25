@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
@@ -86,6 +87,14 @@ public class BookController {
                 });
 
     }
+
+    /*// update date only
+    @PatchMapping("/{id}")
+    Book patchBookDateBorrow(@RequestBody Map<String, String> update, @PathVariable Long id) {
+        return null;
+    }*/
+
+
 
     @DeleteMapping("/{id}")
     void deleteBook(@PathVariable Long id) {

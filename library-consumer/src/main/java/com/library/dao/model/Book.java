@@ -2,9 +2,12 @@ package com.library.dao.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import javax.validation.constraints.Null;
 import java.math.BigDecimal;
+import java.util.Date;
 
 
 @Data
@@ -23,34 +26,22 @@ public class Book {
 
     //Genre du livre
     private String genre;
-
     //Nombre d'exemplaires
     private Long quantity;
 
     @Column(columnDefinition = "boolean default true")
     private Boolean available;
 
+    @Nullable
+    private Boolean isProlongation;
+
+    @Nullable
+    @Temporal(TemporalType.DATE)
+    private Date borrowDate;
+
     @JsonIgnore
     @ManyToOne
     private User borrower;
-
-    public Book(String name, String author, Double price, String genre, Long quantity, Boolean available, User borrower) {
-        this.name = name;
-        this.author = author;
-        this.price = price;
-        this.genre = genre;
-        this.quantity = quantity;
-        this.available = available;
-        this.borrower = borrower;
-    }
-
-    //ou boolean
-    //private int borrowCount;
-
-    /*
-        //Début du prêt
-        private Date borrowDate;
-     */
 
 }
 

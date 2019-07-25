@@ -33,6 +33,7 @@ public class BookController {
     @GetMapping
     public String allBooks(Model model, Principal principal){
         List<BookBean> books =  mBookProxy.findBooks();
+
         model.addAttribute("books", books);
         model.addAttribute("username", principal.getName());
 
