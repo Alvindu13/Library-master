@@ -95,6 +95,7 @@ public class BookController {
         return repository.findById(id)
                 .map(x -> {
                     x.setBorrowDate(newBook.getBorrowDate());
+                    x.setAvailable(newBook.getAvailable());
                     return repository.save(x);
                 })
                 .orElseGet(() -> {
