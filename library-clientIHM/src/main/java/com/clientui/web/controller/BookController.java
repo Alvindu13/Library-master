@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @Controller
-@RequestMapping("books")
+@RequestMapping("/books")
 public class BookController {
 
     @Autowired
@@ -57,7 +57,6 @@ public class BookController {
     @PostMapping("/date")
     String bookReserve(BookBean newBook, @RequestParam("id") Long id) {
         mBookProxy.bookReserve(newBook, id);
-
         return "redirect:/books";
     }
 

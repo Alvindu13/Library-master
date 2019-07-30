@@ -14,7 +14,7 @@ public interface MicroserviceConsumerProxy {
         @GetMapping("/books")
         List<BookBean> findBooks();
 
-        @GetMapping("books/user/{borrowerId}")
+        @GetMapping("/books/user/{borrowerId}")
         List<BookBean> borrowerBooks(@PathVariable Long borrowerId);
 
         // Find
@@ -36,9 +36,11 @@ public interface MicroserviceConsumerProxy {
         @GetMapping("/users/{username}")
         UserBean findByName(@PathVariable String username);
 
-        @PatchMapping("books/date/{id}")
+        @PatchMapping("/books/date/{id}")
         BookBean bookReserve(@RequestBody BookBean newBook, @PathVariable Long id);
 
-        @GetMapping("books/{id}")
+        @GetMapping("/books/{id}")
         BookBean findOneBook(@PathVariable Long id);
+
+
 }
